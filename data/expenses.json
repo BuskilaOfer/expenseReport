@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "description": "e",
+        "category": "x",
+        "date": "2023-10-13",
+        "amount": "5"
+    },
+    {
+        "id": 2,
+        "description": "e",
+        "category": "x",
+        "date": "2023-10-13",
+        "amount": "5"
+    }
+]
