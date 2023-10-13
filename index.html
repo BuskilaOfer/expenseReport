@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>דוח כספים</title>
+
+  <meta charset="utf-8">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <style>
+    /* CSS for styling */
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      background-color: transparent;
+      direction: rtl; /* Right-to-left text direction */
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #666;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr,
+    th,
+    td {
+      color: #ffffff;
+    }
+
+    h2 {
+      color: #000;
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <table id="revenueTable">
+    <thead>
+      <h3>הכנסות</h3>
+    </thead>
+
+    <tbody id="revenueBody">
+      <!-- Content will be inserted here -->
+    </tbody>
+
+  </table>
+<br>
+  <table id="expenseTable">
+    <thead>
+      <h3>הוצאות</h3>
+    </thead>
+
+    <tbody id="expenseBody">
+      <!-- Content will be inserted here -->
+    </tbody>
+
+  </table>
+
+  <script>
+    // Hard-coded JSON string
+const jsonString = `{
+  "revenues": [
+    {"description": "החזר על טעינות חשמליות", "amount": "832.03 ש״ח"},
+    {"description": "שימוש במועדון", "amount": "150 ש״ח"},
+    {"description": "גביעה מדיירים", "amount": "35792 ש״ח"},
+    {"description": "רכישת צ'פים על ידי דיירים", "amount": "160 ש״ח"}
+  ],
+  "expenses": [
+    {"description": "עמלת בנק", "amount": "28.16 ש״ח"},
+    {"description": "רכישת שולחנות למועדון דיירים", "amount": "359.7 ש״ח"},
+    {"description": "בזק - קו חרום", "amount": "98.36 ש״ח"},
+    {"description": "מתנה לעובד ניקיון", "amount": "250 ש״ח"},
+    {"description": "רכישת עץ לגינה", "amount": "351 ש״ח"},
+    {"description": "חברת אחזקה (אוגוסט)", "amount": "26000 ש״ח"},
+    {"description": "פרטנר", "amount": "124.78 ש״ח"},
+    {"description": "רכישת נייר לניגוב ידיים לשרותים במועדון", "amount": "60 ש״ח"},
+    {"description": "רכישת צ'פים לחדר כושר", "amount": "75 ש״ח"},
+    {"description": "רכישת  4 גופי תאורה לחניון התחתון", "amount": "865 ש״ח"},
+    {"description": "חשבון חשמל (אוגוסט)", "amount": "8728.02 ש״ח"},
+    {"description": "עמלת אשראי", "amount": "296.98 ש״ח"}
+  ]
+}
+`;
+
+    // Parse JSON string to object
+    const data = JSON.parse(jsonString);
+
+    // Function to populate table
+    function populateTable(tableBodyId, items, keys) {
+
+      const tableBody = document.getElementById(tableBodyId);
+
+      items.forEach(item => {
+
+        const row = document.createElement('tr');
+
+        keys.forEach(key => {
+
+          const cell = document.createElement('td');
+
+          cell.textContent = item[key];
+
+          row.appendChild(cell);
+
+        });
+
+        tableBody.appendChild(row);
+
+      });
+
+    }
+
+    // Populate revenue table
+    populateTable('revenueBody', data.revenues, ['description', 'amount']);
+
+    // Populate expense table
+    populateTable('expenseBody', data.expenses, ['description', 'amount']);
+
+  </script>
+
+</body>
+
+</html>
